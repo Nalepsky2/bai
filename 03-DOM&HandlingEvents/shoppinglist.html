@@ -9,19 +9,26 @@
 <body>
     <h1>Shopping List</h1>
     <p>
-        New item: <input type="text" name="item">
-        <button type="button">Add</button>
+        New item: <input id="input" type="text" name="item">
+        <button type="button" onclick="addToList(document.getElementsByName('item')[0].value);">Add</button>
     </p>
     <h3>List of items</h3>
-    <ol>
+    <ol id="items">
         <li>cooking oil</li>
         <li>breakfast cereal</li>
         <li>bread</li>
     </ol>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-    	// a JavaScript code here ...
-
+    	function addToList(newItem)
+        {
+            let el = document.createElement("li");
+			el.textContent = newItem;
+            document.getElementById("items").appendChild(el);
+            document.getElementById('input').value = "address";
+            $("li").click(function(){ this.parentNode.removeChild(this); });
+        }    
     </script>
 </body>
 

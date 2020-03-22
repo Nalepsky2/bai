@@ -20,12 +20,30 @@
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
 		
-		<textarea rows="15" cols="50"></textarea><br>
+		<textarea id="userInput" rows="15" cols="50" oninput="if(!Started){started = true; setTimeout(function(){ getResults(); }, 3000);}"></textarea><br>
 		
 		<script>
-			// a JavaScript code here ...
-			
-		</script>
-		
+			let Started = false;
+			let finished = false;
+
+			function getResults()
+			{
+				input = document.getElementById("userInput");
+				words = input.value.split(' ').length;
+				chars = input.value.length;
+				let message = `Udało Ci sie napisać ${words} słów oraz ${chars} znaków!`;
+
+				if(!finished){
+					let resultMessage = document.createElement("p");
+					resultMessage.id ="resultMessage";
+					resultMessage.textContent = message;
+
+					document.body.appendChild(resultMessage);
+					finished = true;
+				} else {
+					document.getElementById("resultMessage").textContent = message;
+				}		
+			}			
+		</script>		
 	</body>
 </html>

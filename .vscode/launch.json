@@ -13,7 +13,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\02-JSCoreConcepts\\university.js"
+            "program": "${workspaceFolder}\\03-DOM&HandlingEvents\\findingelements.js"
         }
     ]
 }
