@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="title" placeholder="title">
+    <input type="text" v-model="authorName" placeholder="author's name">
+    <input type="text" v-model="authorSurname" placeholder="author's surname">
+    <button type="button" v-on:click="save">Save</button>
+</div>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            title: '',
+            authorName: '',
+            authorSurname: '',
+        },
+        methods: {
+            save: function () {
+                console.log(`title => "${this.title}"`);
+                console.log(`authorName => ${this.authorName}`);
+                console.log(`authorSurname => ${this.authorSurname}`);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

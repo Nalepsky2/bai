@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="name" placeholder="name">
+    <input type="text" v-model="surname" placeholder="surname">
+    <input type="text" v-model.number="age" placeholder="age">
+
+    <br>
+    <br>
+
+    <span>Płec:</span>
+    <select v-model="gender">
+        <option>kobieta</option>
+        <option>mężczyzna</option>
+        <option value="" disabled selected hidden></option>
+    </select>
+
+    <span>Wykształcenie :</span>
+    <select v-model="education">
+        <option>Brak</option>
+        <option>Podstawowe</option>
+        <option>Średnie</option>
+        <option>Wyższe</option>
+        <option value="" disabled selected hidden></option>
+    </select>
+
+    <br>
+    <br>
+
+    <span>Umiejętności:</span><br>
+
+    <label for="computerSkills">Obsługa komputera</label>
+    <input type="checkbox" id="computerSkills" value="computerSkills" v-model="skills"><br>
+
+    <label for="drivingLicense">Prawo jazdy</label>
+    <input type="checkbox" id="drivingLicense" value="drivingLicense" v-model="skills"><br>
+
+    <label for="creativity">Kreatywność</label>
+    <input type="checkbox" id="creativity" value="creativity" v-model="skills"><br>
+
+    <label for="teamWork">Praca w zespole</label>
+    <input type="checkbox" id="teamWork" value="teamWork" v-model="skills"><br>
+
+    <br>
+
+    <button type="button" @click="save">Zapisz</button>
+    <button type="button" @click="load">Czytaj</button>
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            surname: '',
+            age: '',
+            gender: '',
+            education: '',
+            skills: [],
+        },
+        methods: {
+            save() {
+                const {name, surname, age, gender, education, skills} = this
+                localStorage.cv = JSON.stringify({name, surname, age, gender, education, skills});
+            },
+            load() {
+                if (localStorage.cv) {
+                    const cv = JSON.parse(localStorage.cv)
+                    this.name = cv.name;
+                    this.surname = cv.surname;
+                    this.age = cv.age;
+                    this.gender = cv.gender;
+                    this.education = cv.education;
+                    this.skills = cv.skills;
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

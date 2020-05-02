@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        name1: 'Adam',
-        name2: 'Jan',
-        surname: 'Majewski',
-        foreigner: false,
-        nationality: 'Polish',
-        pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
-    });
-  </script>
+  <div id="app">
+    <div v-for="employee in employees">
+      Name 1: {{ employee.name1 }} <br>
+      <a v-if="employee.name2 != ''">Name 2: {{ employee.name2 }}<br></a>
+      Surname: {{ employee.surname }} <br>
+      <a v-if="employee.nationality == 'Polish'"> Pesel: {{ employee.pesel }} <br></a>
+      <a v-else> Nationality: {{ employee.nationality }} <br></a>
+      {{ employee.address }} <br><br><br>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          employees:
+            [
+              {
+                name1: 'Adam',
+                name2: 'Jan',
+                surname: 'Majewski',
+                nationality: 'Polish',
+                pesel: '92021708229',
+                address: 'ul. Szeroka 3, Kraków'
+              },
+              {
+                name1: 'John',
+                name2: '',
+                surname: 'Brown',
+                nationality: 'USA',
+                pesel: 0,
+                address: 'Holland Drive 4, Chicago'
+              }
+            ]
+
+        }
+      });
+    </script>
 
 </body>
+
 </html>
