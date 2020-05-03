@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <counter-component></counter-component>
+</div>
+
+<script type="text/x-template" id="counter-template">
+    <div>
+        <button @click="subtract">Subtract</button>
+        <span> {{total}} </span>
+        <button @click="add">Add</button>
+    </div>
+</script>
+
+<script>
+    Vue.component('counter-component', {
+        template: '#counter-template',
+        data() {
+            return {
+                total: 0,
+            }
+        },
+        methods: {
+            add: function () {
+                this.total++;
+            },
+            subtract: function () {
+                this.total--;
+            },
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+
+</body>
+</html>

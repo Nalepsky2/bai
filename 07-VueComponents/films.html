@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <ul id="v-for-object" class="demo">
+        <li v-for="f in movies">
+            <movie v-bind:title="f.title" v-bind:year="f.year" v-bind:director="f.director"></movie>
+        </li>
+    </ul>
+</div>
+
+
+<script type="text/x-template" id="movie-template">
+    <div>
+        <h5>{{title}}</h5>
+        <p>{{year}}</p>
+        <p>{{director}}</p>
+    </div>
+</script>
+<script>
+    Vue.component('movie', {
+        template: '#movie-template',
+        props: {
+            title: String,
+            year: Number,
+            director: String
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            movies: [
+                {
+                    title: 'Lord of the Rings: The Fellowship of the Ring',
+                    year: 2001,
+                    director: 'Peter Jackson'
+                },
+                {
+                    title: 'Dune',
+                    year: 1984,
+                    director: 'David Lynch'
+                },
+                {
+                    title: 'Monty Python\'s Life of Brian',
+                    year: 1979,
+                    director: 'Terry Jones'
+                }
+            ]
+        }
+    })
+</script>
+
+
+</body>
+</html>

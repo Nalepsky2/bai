@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <binary v-for='n in numbers' v-bind:number='n'></binary>
+</div>
+
+
+
+<script type="text/x-template" id="binary-template">
+    <div>
+        <p>{{number}}(10) = {{convertToBinary}}(2)</p>
+    </div>
+</script>
+
+<script>
+    Vue.component('binary', {
+        template: '#binary-template',
+        props: {
+            number: Number,
+        },
+        computed: {
+            convertToBinary: function() {
+                return this.number.toString(2);
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            numbers: [8, 170, 204, 3855]
+        }
+    })
+</script>
+
+</body>
+</html>

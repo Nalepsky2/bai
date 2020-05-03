@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <facts-component></facts-component>
+</div>
+
+<script type="text/x-template" id="facts-template">
+    <div>
+        <h3>Facts about cat</h3>
+        <div v-for="(el, index) in results">
+            <div>
+                <b>Fact #{{getIndex(index)}}</b> <br>
+                {{el.text}} <br><br>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    Vue.component('facts-component', {
+        template: '#facts-template',
+        data() {
+            return {
+                results: [],
+            }
+        },
+        mounted() {
+            axios.get('https://cat-fact.herokuapp.com/facts')
+                .then(response => this.results = response.data.all)
+        },
+        methods: {
+            getIndex: function (index) {
+                return index + 1;
+            },
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

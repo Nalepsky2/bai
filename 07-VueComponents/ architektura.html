@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <neumann></neumann>
+</div>
+
+
+<script type="text/x-template" id="neumann-template">
+    <div>
+        <h3>Von Neumann Architecture</h3>
+        <p v-for="element in elements">{{element}}</p>
+    </div>
+</script>
+
+<script>
+    Vue.component('neumann', {
+        template: '#neumann-template',
+        data() {
+            return {
+                elements: ['Memory',
+                    'Processing Unit',
+                    'Input',
+                    'Output',
+                    'Control Unit']
+            }
+        },
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+
+</body>
+</html>
